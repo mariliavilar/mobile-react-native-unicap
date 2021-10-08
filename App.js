@@ -1,11 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
+
+const hellos = ["Hello World", "Alô Mundo", "Hola Mundo", "Bonjour le monde"];
+const language = ["English", "Portuguese", "Spanish", "French", "Reiniciar"];
 
 export default function App() {
+  const [index, setIndex] = useState(0);
+  const handlePress = () => (
+    setIndex((index+1) % language.length)  
+  );
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>{hellos[index-1]}</Text>
+      <Button title={language[index]} onPress={handlePress}/>
       <StatusBar style="auto" />
     </View>
   );
@@ -14,7 +22,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'orange',
     alignItems: 'center',
     justifyContent: 'center',
   },
