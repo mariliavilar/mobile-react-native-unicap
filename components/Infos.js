@@ -1,33 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, ActivityIndicator, View, Text } from "react-native";
 import { useQuery } from 'react-query'; 
 
 import { loadItems } from "../api";
 
 
-export const Infos = ({sign, day, urlApi}) => {
-    console.log("urlApi =", urlApi);
+export const Infos = ({sign, day, baseUrlApi}) => {
+    console.log("selectedDay = ", day);
+    console.log("sig = ", sign);
+    console.log("url = ", `${baseUrlApi}?sign=${sign}&day=${day}`);
 
-    const { isLoading, error, data } = useQuery(`horoscope-${day}-${sign}`, loadItems(`${urlApi}?sign=${sign}&day=${day}`));
-    console.log("data", data);
-
-    // const [titleText, setTitleText] = useState("Capricórnio");
-  
-    // const onPressTitle = () => {
-    //   setTitleText("Bird's Nest [pressed]");
-    // };
+    const { isLoading, error, data } = useQuery(`horoscope-${day}-${sign}`, loadItems(`${baseUrlApi}?sign=${sign}&day=${day}`));
+    console.log("data = ", data);
 
     if (isLoading) {
         return  <ActivityIndicator size="large" color="pink" />;
     }
 
-    if (error || data?.detail === "Not found") {
-        return (
+    if (error || data?.message === "Wrong sign or day passed. Please refer https://aztro.readthedocs.io/en/latest/ ") {
+    return (
             <View>
-                <Text>Erro: {error || "Not Found"}</Text>
+                {/* <Text style={styles.error}>Erro: {error || data?.message}</Text> */}
+                <Text style={styles.error}>Erro: {error || "Not Found"}</Text>
             </View>
         );
     };
+    
 
     return (
         <View style={styles.container}>
@@ -50,6 +48,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 40,
         paddingVertical: 20,
     },
+
     description: {
         backgroundColor: "pink",
         borderRadius: 10,
@@ -58,11 +57,24 @@ const styles = StyleSheet.create({
         paddingHorizontal: 32,
         paddingVertical: 24,
     },
+
+    error: {
+        marginTop: 20,
+        marginHorizontal: 20,
+        paddingHorizontal: 40,
+        paddingVertical:60,
+        backgroundColor: "grey",
+        color: "white",
+        fontSize: 20,
+        textAlign: "center",
+    },
+
     information: {
         color: "white",
         margin: 4,
         fontSize: 14,
     },
+
     subtitleText: {
         color: "grey",
         fontSize: 16,
@@ -70,12 +82,14 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         fontWeight: "bold",
     },
+
     titleDescriptionText: {
         color: "pink",
         fontSize: 14,
         paddingBottom: 30,
         textAlign: "center",
     },
+
     titleText : {
         color: "white",
         fontSize: 30,
