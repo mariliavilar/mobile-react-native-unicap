@@ -1,46 +1,88 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { Button, Image, ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, Image, ImageBackground, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { Infos } from './components/Infos';
+import { PressableOption } from './components/PressableOption';
 
+const imageUriBackground = { uri: "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=671&q=80" };
+//const imageUriProfile = { uri: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"}
 
-const imageUriBackground = { uri: "https://cdn.wallpapersafari.com/57/1/e7y3Lh.jpg" };
-const imageUriProfile = { uri: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"}
+// Create a client
+const queryClient = new QueryClient()
 
 export default function App() {
 
-  const changeTitle = () => (
-    setTitle(userName)
-  );
+  const searchSign = () => {
+    console.log("editSign = ", {editSign});
+    // setSign(editSign);
+    return (<Infos sign={editSign} urlApi={baseUrl}/>)
+  };
 
-  const [userName, onChangeUserName] = React.useState(null);
-  const [title, setTitle] = React.useState(null);
+  const [day, setDay] = React.useState('today');
+  //var sign = "capricorn";
+  const [editSign, onChangeSign] = React.useState('capricorn');
+  var baseUrl = `https://aztro.sameerkumar.website/?sign=${editSign}&day=${day}`;
+  const [sign, setSign] = React.useState(null);
 
   return (
-    <View style={styles.container}>
-      <ImageBackground source={imageUriBackground} resizeMode="cover" style={styles.imageBackground}>
+    //step03 - Provide the client to your App -> around the entire app
+    <QueryClientProvider client={queryClient}>
+      <View style={styles.container}>
+        <ImageBackground source={imageUriBackground} resizeMode="cover" style={styles.imageBackground}>
 
-        <Text style={styles.title}>{title}</Text>
+          {/* <Text style={styles.title}>{title}</Text> */}
 
-        <View style={[styles.imageProfileContainer, { borderColor: 'white', borderWidth:2 }]}>
-          <Image source={imageUriProfile} style={styles.imageProfile}/>
-        </View>
+          {/* <View style={[styles.imageProfileContainer, { borderColor: 'white', borderWidth:2 }]}>
+            <Image source={imageUriProfile} style={styles.imageProfile}/>
+          </View> */}
+  
+          <TextInput
+            style={styles.input}
+            onChangeText={onChangeSign}
+            value={editSign}
+            placeholder="type your sign"
+          />
 
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeUserName}
-          value={userName}
-          placeholder="digite para alterar o seu nome"
-        />
+          <View style={styles.buttons}>
+            <Button style={styles.buttons} title="Salvar" onPress={() => {loadHoroscope({editSign, day})}} color="purple" accessibilityLabel="buscar horóscopo pelo nome do signo"/>
+          </View>
 
-        <View style={styles.buttons}>
-          <Button style={styles.buttons} title="Salvar" onPress={changeTitle} color="purple" accessibilityLabel="salvar nome do usuário"/>
-        </View>
+          {/* <PressableOption sign="capricorn"/> */}
+          
+          <Button
+          title="yesterday"
+          onPress={() => setDay("yesterday")}
+          />
 
-        <StatusBar style="auto" />
-      </ImageBackground>
-    </View>
+          <Button
+          title="today"
+          onPress={() => setDay("today")}
+          />
+
+          <Button
+          title="tomorrow"
+          onPress={() => setDay("tomorrow")}
+          />
+
+          <Infos sign={editSign} urlApi={baseUrl}/>
+
+          <StatusBar style="auto" />
+        </ImageBackground>
+      </View>
+    </QueryClientProvider>
   );
 }
+
+// export const loadHoroscope = ({sign, day}) => {
+//   var baseUrl = `https://aztro.sameerkumar.website/?sign=${sign}&day=${day}`;
+//   console.log("sign = ", {sign}),
+//   console.log("urlApi = " , {baseUrl})
+//   return (
+//     <Infos sign={sign} urlApi={baseUrl}/>
+//   );
+// };
+
 
 const styles = StyleSheet.create({
   
@@ -50,6 +92,10 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
+  },
+
+  horoscope: {
+    justifyContent: "center"
   },
 
   imageBackground: {
