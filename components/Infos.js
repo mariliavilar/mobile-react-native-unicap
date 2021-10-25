@@ -5,10 +5,10 @@ import { useQuery } from 'react-query';
 import { loadItems } from "../api";
 
 
-export const Infos = ({sign, urlApi}) => {
+export const Infos = ({sign, day, urlApi}) => {
     console.log("urlApi =", urlApi);
 
-    const { isLoading, error, data } = useQuery('itens', loadItems(urlApi));
+    const { isLoading, error, data } = useQuery(`horoscope-${day}-${sign}`, loadItems(`${urlApi}?sign=${sign}&day=${day}`));
     console.log("data", data);
 
     // const [titleText, setTitleText] = useState("Capricórnio");
@@ -34,9 +34,11 @@ export const Infos = ({sign, urlApi}) => {
             <Text style={styles.titleText}>{sign}</Text>
             <Text style={styles.titleDescriptionText}>{data.date_range}</Text>
             <Text style={styles.subtitleText}>Horoscope on {data.current_date}</Text>
-            <Text style={styles.information}>Lucky number: {data.lucky_number}</Text>
-            <Text style={styles.information}>Color: {data.color}</Text>
             <Text style={styles.information}>Mood: {data.mood}</Text>
+            <Text style={styles.information}>Color: {data.color}</Text>
+            <Text style={styles.information}>Lucky number: {data.lucky_number}</Text>
+            <Text style={styles.information}>Lucky time: {data.lucky_time}</Text>
+            <Text style={styles.information}>Compatibility: {data.compatibility}</Text>
             <Text style={styles.description}>{data.description}</Text>
         </View>
      );
@@ -50,30 +52,33 @@ const styles = StyleSheet.create({
     },
     description: {
         backgroundColor: "pink",
+        borderRadius: 10,
         color: "brown",
-        marginTop: 20,
-        paddingHorizontal: 40,
-        paddingVertical: 30,
+        marginTop: 16,
+        paddingHorizontal: 32,
+        paddingVertical: 24,
     },
     information: {
         color: "white",
-        margin: 10,
-        fontSize: 16,
+        margin: 4,
+        fontSize: 14,
     },
     subtitleText: {
         color: "grey",
         fontSize: 16,
         paddingBottom: 10,
+        alignSelf: "center",
+        fontWeight: "bold",
     },
     titleDescriptionText: {
         color: "pink",
-        fontSize: 10,
+        fontSize: 14,
         paddingBottom: 30,
         textAlign: "center",
     },
     titleText : {
         color: "white",
-        fontSize: 20,
+        fontSize: 30,
         paddingBottom: 10,
         fontWeight: "bold",
         textAlign: "center",
