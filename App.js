@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { Button, Image, ImageBackground, StyleSheet, View } from 'react-native';
+//step01 - 'react-query' - [App.js] - Importar QueryClient e QueryClientProvider
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { Infos } from './components/Infos';
@@ -9,13 +10,13 @@ import { Infos } from './components/Infos';
 const imageUriBackground = { uri: "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=671&q=80" };
 const imageUriSign = { uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Capricorn.svg/1200px-Capricorn.svg.png"}
 
-// Create a client
+//step02 - 'react-query' - [App.js] - Criar um client -> new QueryClient()
 const queryClient = new QueryClient()
 
 export default function App() {
 
   const [selectedDay, setSelectedDay] = useState("today");
-  const [sign, setSign] = React.useState("capricor");
+  const [sign, setSign] = React.useState("capricorn");
 
   const handleYesterdayPress = () => {
     setSelectedDay("yesterday");
@@ -28,7 +29,7 @@ export default function App() {
   };
 
   return (
-    //step03 - Provide the client to your App -> around the entire app
+    //step03 - 'react-query' - [App.js] - Provide the client to your App -> put around the app
     <QueryClientProvider client={queryClient}>
       <View style={styles.container}>
         <ImageBackground source={imageUriBackground} resizeMode="cover" style={styles.imageBackground}>

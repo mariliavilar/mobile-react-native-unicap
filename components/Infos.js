@@ -10,6 +10,7 @@ export const Infos = ({sign, day, baseUrlApi}) => {
     console.log("sig = ", sign);
     console.log("url = ", `${baseUrlApi}?sign=${sign}&day=${day}`);
 
+    //step07 - 'react-query' - Para a maioria das consultas, geralmente é suficiente verificar o estado isLoading, o estado Error e, finalmente, assumir que os dados estão disponíveis e renderizar o estado bem-sucedido, através do seu data:
     const { isLoading, error, data } = useQuery(`horoscope-${day}-${sign}`, loadItems(`${baseUrlApi}?sign=${sign}&day=${day}`));
     console.log("data = ", data);
 
