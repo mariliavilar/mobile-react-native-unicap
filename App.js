@@ -20,7 +20,7 @@ export default function App() {
           - Incluir <NavigationContainer> e <Stack.Navigator> 
           - e colocar as telas para navegação dentro delas */}
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Horoscope">
+        <Stack.Navigator initialRouteName="Home">
           {/* /* step03 - 'react-navigation' - [App.js]
             - Como especificar uma rota? usando o componente Screen
             que recebe como propriedades name e component
