@@ -9,7 +9,7 @@ const imageUriBackground = { uri: "https://images.unsplash.com/photo-15163399016
 const imageUriSign = { uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Capricorn.svg/1200px-Capricorn.svg.png"}
 
 
-export function Horoscope() {
+export function HoroscopeScreen() {
 
   const [selectedDay, setSelectedDay] = useState("today");
   const [sign, setSign] = React.useState("capricorn");
