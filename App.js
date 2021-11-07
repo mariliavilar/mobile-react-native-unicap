@@ -7,6 +7,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { HoroscopeScreen } from './screens/HoroscopeScreen';
 import { HomeScreen } from './screens/HomeScreen';
+import { ProfileScreen } from './screens/ProfileScreen';
+import { MenuScreen } from './screens/MenuScreen';
 
 //step02 - 'react-navigation' - [App.js]
 //  - Criar uma StackNavigator -> createNativeStackNavigator();
@@ -27,6 +29,8 @@ export default function App() {
             - Aqui, usei a navegação por pilha (Stack) */}
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Horoscope" component={HoroscopeScreen} options={{ title: 'My Horoscope' }} />
+          <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: 'My Profile' }} />
+          <Stack.Screen name="Menu" component={MenuScreen} options={{ title: 'Menu' }} />
           {/* step04 - 'react-navigation' - [App.js]
               - Extras:
                   - definir initialRouteName no 'Navigator'

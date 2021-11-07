@@ -6,10 +6,10 @@ import { Infos } from '../components/Infos';
 
 
 const imageUriBackground = { uri: "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=671&q=80" };
-const imageUriSign = { uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Capricorn.svg/1200px-Capricorn.svg.png"}
+const imageUriSign = { uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Capricorn.svg/1200px-Capricorn.svg.png" }
 
 
-export function HoroscopeScreen() {
+export function HoroscopeScreen({ navigation }) {
 
   const [selectedDay, setSelectedDay] = useState("today");
   const [sign, setSign] = React.useState("capricorn");
@@ -25,32 +25,38 @@ export function HoroscopeScreen() {
   };
 
   return (
-    //step03 - 'react-query' - [App.js] - Provide the client to your App -> put around the app
-   
-      <View style={styles.container}>
-        <ImageBackground source={imageUriBackground} resizeMode="cover" style={styles.imageBackground}>
+    <View style={styles.container}>
+      <ImageBackground source={imageUriBackground} resizeMode="cover" style={styles.imageBackground}>
 
-          <View style={[styles.imageSignContainer, { borderColor: 'white', borderWidth:0.3 }]}>
-            <Image source={imageUriSign} style={styles.imageSign}/>
-          </View>
+        <View style={[styles.imageSignContainer, { borderColor: 'white', borderWidth: 0.3 }]}>
+          <Image source={imageUriSign} style={styles.imageSign} />
+        </View>
 
-          <Infos sign={sign} day={selectedDay} baseUrlApi={`https://aztro.sameerkumar.website/`}/>
-          
+        <Infos sign={sign} day={selectedDay} baseUrlApi={`https://aztro.sameerkumar.website/`} />
+
+        <View style={styles.bottom}>
           <View style={styles.viewButtons}>
-            <Button title="yesterday" onPress={handleYesterdayPress} color="purple" style={styles.buttons}/>
-            <Button title="today" onPress={handlerTodayPress} color="purple" style={styles.buttons}/>
-            <Button title="tomorrow" onPress={handlerTomorrowPress} color="purple" style={styles.buttons}/>
+            <Button title="yesterday" onPress={handleYesterdayPress} color="purple" style={styles.buttons} />
+            <Button title="today" onPress={handlerTodayPress} color="purple" style={styles.buttons} />
+            <Button title="tomorrow" onPress={handlerTomorrowPress} color="purple" style={styles.buttons} />
           </View>
+        </View>
 
-          <StatusBar style="auto" />
-        </ImageBackground>
-      </View>
-   
+        <StatusBar style="auto" />
+      </ImageBackground>
+    </View>
+
   );
 }
 
 const styles = StyleSheet.create({
-  
+
+  bottom: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 62,
+  },
+
   buttons: {
     marginHorizontal: 120,
   },
@@ -67,20 +73,20 @@ const styles = StyleSheet.create({
   imageSign: {
     height: 90,
     width: 90,
-    borderRadius: 90/2,
+    borderRadius: 90 / 2,
     tintColor: "pink",
   },
 
   imageSignContainer: {
-    margin: 12,
+    marginTop: 32,
     height: 90,
     width: 90,
-    borderRadius: 90/2,
+    borderRadius: 90 / 2,
     overflow: 'hidden',
     alignSelf: 'center',
     backgroundColor: "transparent"
   },
-  
+
   viewButtons: {
     marginTop: 50,
     flexDirection: "row",
