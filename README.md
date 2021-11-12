@@ -20,3 +20,7 @@ Projeto destinado às atividades da disciplina de Mobile do cursos de Sistemas p
 "Adicione outra tela à sua aplicação do React Query (semana passada) utilizando o React Navigation para gerenciar as diversas telas que o seu App vai ter."
 
 (obs: imagens do projeto retiradas em: https://unsplash.com, todas com a respectiva url)
+
+## Atividade 05 - Publicando App no Expo
+"Publique o App do último exercício criando uma URL do Expo e anexe-a aqui nesta atividade."
+- URL do expo -> exp://exp.host/@mariliavilar/my-daily-horoscope
