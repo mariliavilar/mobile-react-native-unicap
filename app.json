@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MobileUnicap",
-    "slug": "MobileUnicap",
+    "name": "My Daily Horoscope",
+    "slug": "my-daily-horoscope",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Aplicativo desenvolvido em React Native para a disciplina de Mobile do curso Sistemas para Internet da Unicap. A aplicação faz uso da API aztro para buscar o horóscopo de ontem/hoje/amanhã dos signos, e utiliza imagens do unsplash.com com seus respectivos links.",
+    "githubUrl": "https://github.com/mariliavilar/mobile-react-native-unicap"
   }
 }
