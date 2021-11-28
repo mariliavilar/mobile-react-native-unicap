@@ -24,3 +24,6 @@ Projeto destinado às atividades da disciplina de Mobile do cursos de Sistemas p
 ## Atividade 05 - Publicando App no Expo
 "Publique o App do último exercício criando uma URL do Expo e anexe-a aqui nesta atividade."
 - URL do expo -> exp://exp.host/@mariliavilar/my-daily-horoscope
+
+## Atividade 06 - Personalização de Cabeçalhos
+"Pegue o seu App publicado no exercício anterior e inclua personalizações do cabeçalho."
