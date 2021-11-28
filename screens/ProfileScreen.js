@@ -39,12 +39,6 @@ export function ProfileScreen({ navigation }) {
 
                 <StatusBar style="auto" />
 
-
-                {/* step07 - 'react-navigation' - [MyScreen.js]
-            Implementação dos diferentes usos do navigation no fluxo de movimentação entre telas, usando stack: 
-            - .navigate("My Screen") -> ir para nova página
-            - .goBack() -> retornar a página anterior
-            - .popToTop() -> desempilhar todas e retornar a primeira tela*/}
                 <View style={styles.bottom}>
                     <View style={styles.viewButtons}>
                         <Button title="Back" onPress={() => navigation.goBack()} color="purple" style={styles.buttons} />

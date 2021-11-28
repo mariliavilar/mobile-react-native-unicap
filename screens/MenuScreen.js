@@ -5,12 +5,6 @@ import { ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native
 const imageUriBackground = { uri: "https://images.unsplash.com/photo-1597567175782-1e5771f7f313?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" };
 
 
-// step05 - 'react-navigation' - [MyScreen.js]
-/* tenho que pegar minha prop 'navigation' 
-a prop 'navigation' já é passada por padrão para cada componente da tela no stack navigation nativo
-(react navigation injeta automaticamente em todos os componentes que estão dentro dele essa prop 'navigation'
-como esta minha tela HomeScreen está no App.js dentro do Navigation, ela possui por padrão essa prop 'navigation' que eu posso acessar daqui
-*/
 export function MenuScreen({ navigation }) {
   return (
     <View style={styles.container}>
@@ -18,10 +12,6 @@ export function MenuScreen({ navigation }) {
 
         <Text style={styles.titleText}>My Daily Horoscope</Text>
 
-
-        {/* step06 - 'react-navigation' - [MyScreen.js]
-            chamar a função 'navigate' (na propriedade de 'navigation') com o nome da rota de destino (de acordo com o 'name' definido no App.js)
-            navigate vai colocar essa nova tela no topo da pilha */}
         <Pressable onPress={() => navigation.navigate('Horoscope')} style={styles.buttons}>
           <Text style={styles.textButtons}>My Horoscope</Text>
         </Pressable>
